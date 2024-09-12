@@ -99,14 +99,12 @@ class VOTableLoaderHelper(object):
         return [parts]
     @staticmethod
     def makeComplFeat(vot, rowN):
-        makeFeat      = lambda coords, props: {"type":"Feature","geometry": { "type": "Polygon", "coordinates": coords},"properties": props}
-        #makeMaskEmpty = lambda vot, rowN:     [str(q).replace('MASKED','') for q in vot[rowN]]
-        makeMaskEmpty = lambda vot, rowN:     [str(q).replace("b'", "").replace("'","") for q in vot[rowN]]
+        makeFeat      = lambda coords, props: {"type": "Feature", "geometry": { "type": "Polygon", "coordinates": coords }, "properties": props}
+        makeMaskEmpty = lambda vot, rowN: [str(q).replace("b'", "").replace("'", "") for q in vot[rowN]]
 
         sReg = vot['s_region'][rowN]
         dic = dict(list(zip(vot.colnames, makeMaskEmpty(vot, rowN))))
-        return makeFeat(VOTableLoaderHelper.getParts(sReg.decode('ascii')), dic)
-#        return makeFeat(VOTableLoaderHelper.getParts(sReg), dict(list(zip(vot.colnames, makeMaskEmpty(vot, rowN)))))
+        return makeFeat(VOTableLoaderHelper.getParts(sReg), dic)
 
 class ClientRunner(object):
 #class ClientRunner(QThread):

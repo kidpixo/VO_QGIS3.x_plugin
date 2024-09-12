@@ -35,7 +35,7 @@ from . import resources
 from .gavo_coverage_dialog import GAVOCoverageDialog
 import os.path
 from osgeo import osr, gdal # needed for projecting the raster cube
-from gdalconst import * #Gdal constants. Seems to require char values... substituting an int doesnt work :(
+from osgeo.gdalconst import * #Gdal constants. Seems to require char values... substituting an int doesnt work :(
 #import os.path
 import threading, time
 from qgis.core import *
